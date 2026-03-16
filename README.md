@@ -1,4 +1,3 @@
-
 # Physics-Informed Bio-Gated Fusion (PI-BGF) for Robust HAR
 [![Paper](https://img.shields.io/badge/Paper-Under_Review-yellow.svg)]()
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.12+-red.svg)]()
@@ -12,22 +11,29 @@ Our proposed architecture explicitly enforces physical causality (Zero Input -> 
   <img src="assets/architecture.png" width="800px" alt="PI-BGF Architecture">
 </div>
 
-## 📊 2. Dynamic Gating Mechanism & Trajectory Tracking
-The model achieves **>96% accuracy** under severe sensor corruption, drastically outperforming traditional attention mechanisms.
-
-* **Left / Gating Weights**: Visualizes the internal weight allocation under Normal, Blackout, and Drift conditions. Our PI-BGF strictly suppresses the corrupted modality weight to nearly `0.0`, proving the effectiveness of the Bias-Free physical constraint.
-* **Right / Trajectory Reconstruction**: Under severe IMU drift, the baseline model fails and oscillates, while our Fusion model (red line) successfully isolates the drift and reconstructs the high-fidelity motion path aligned with the Ground Truth.
+## ⚙️ 2. Dynamic Gating Mechanism (Mechanism Verification)
+Visualizes the internal weight allocation under Normal, Blackout, and Drift conditions. Our PI-BGF strictly suppresses the corrupted modality weight to nearly `0.0`, proving the effectiveness of the Bias-Free physical constraint.
 
 <div align="center">
-  <img src="assets/gating_weights.png" width="400px" alt="Gating Weights Heatmap">
-  <img src="assets/trajectory.png" width="400px" alt="Trajectory Reconstruction">
+  <img src="assets/gating_weights.png" width="600px" alt="Gating Weights Heatmap">
 </div>
 
-## 🚀 3. Quick Inference Demo
+## 📊 3. Robustness & Feature Discriminability (Final Results)
+The model achieves **>96% accuracy** under severe sensor corruption, drastically outperforming traditional attention mechanisms.
+
+* **Top / Confusion Matrices**: Demonstrates structurally invariant diagonal sharpness even when subjected to Visual Jitter, IMU Noise, or Visual Blackout.
+* **Bottom / t-SNE Visualization**: Shows highly distinct and well-separated feature manifolds learned by the PI-BGF mechanism, proving corruption-invariant representation.
+
+<div align="center">
+  <img src="assets/confusion_matrix.png" width="800px" alt="Confusion Matrix"><br><br>
+  <img src="assets/tsne.png" width="800px" alt="t-SNE Feature Space">
+</div>
+
+## 🚀 4. Quick Inference Demo
 To verify the architecture and tensor flow without training from scratch, run the inference demo with dummy data:
 
 ```bash
-git clone https://github.com/asfasdasfd7-hash/PI-BGF-Net.git
+git clone https://github.com/YourUsername/PI-BGF-Net.git
 cd PI-BGF-Net
 pip install -r requirements.txt
 
